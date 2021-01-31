@@ -24,7 +24,7 @@ void wypisz(int &money, int &spentMoney){
     cin >> c;
     cout << "oto twoje liczby: " << a << " " << b << " " << c << endl;
 
-    int losowanie, tab[3];
+    int  tab[3];
     cout << "oto wylosowane liczby: " << endl;
 
     for (int i = 0; i < 3; ++i) {
@@ -33,22 +33,30 @@ void wypisz(int &money, int &spentMoney){
     }
 
 
-    for (int i = 0; i < 3; ++i) {
-        if(tab[i] == 3){
-            cout << "trafiles 3!" << endl;
+//    for (int i = 0; i < 3; ++i) {
+        if(a == tab[0]){
+            cout << "trafiles 1 liczbe!" << endl;
+            spentMoney += 10;
+        }
+        if(b == tab[1]){
+            cout << "trafiles 2 liczbe!" << endl;
+            spentMoney += 10;
+        }
+        if(c == tab[2]){
+            cout << "trafiles 3 liczbe!" << endl;
             spentMoney += 10;
         }
         else{
             spentMoney -= 10;
         }
-    }
+//    }
     cout << "TWOJA ILOSC PIENIEDZY W TEJ KOLEJCE: " << spentMoney << endl;
 
 
 }
 
 void postaw(int &money, int &spentMoney){
-    cout << "ile stawiasz piniendzy?" << endl;
+    cout << "masz " << money << " $, ile stawiasz ?" << endl;
     cin >> spentMoney;
     if(spentMoney > money){
         cout << "!!!!!" << endl;
@@ -66,9 +74,16 @@ int main() {
 
     int money = 500;
     int spentMoney;
-
+do {
     postaw(money, spentMoney);
-
     wypisz(money, spentMoney);
-
+    cout << "czy chcesz kontynuowac (t/n)? " << endl;
+    char continuation;
+    cin >> continuation;
+    if(continuation == 'n'){
+        cout << "TWOJA ILOSC PIENIEDZY W TEJ GRZE: " << spentMoney << endl;
+        break;
+    }
+    money += spentMoney;
+}while(true);
 }
